@@ -1,0 +1,96 @@
+<div id="button-editor-modal" style="position:absolute; top:10%; right:10%; width:30%; min-width:300px; z-index:20;" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+    <div class="toast-header" style="min-height:50px;">
+        <div class="container m-0 p-0">
+            <h4 class="float-left pl-2 pt-2">Button design</h4>
+            <button type="button" data-dismiss="toast" id="closemedia" class="btn float-right pr-1 pt-3" aria-label="Close">
+        <i class="fas fa-times" style="color:orangered;"></i>
+      </button>
+        </div>
+    </div>
+    <div class="toast-body border-bottom p-0" style="background-color: #fff;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container p-4 d-flex align-items-center justify-content-center" style="height: 70px;">
+                    <a href="javascript:void(0)" class="btn" id="button-preview"> Button </a>
+                </div>
+            </div>
+            <div class="col-md-12 border-top">
+                <div class="card mb-0">
+                    <div class="card-body max-height:350px;overflow-y:scroll;">
+                        <label class="text-muted">Display style</label>
+                        <div class="d-flex justify-content-around">
+                            <div class="icheck-primary d-inline">
+                                <input type="radio" id="btn-default" name="r1">
+                                <label for="btn-default">Squared</label>
+                            </div>
+                            <div class="icheck-primary f-inline">
+                                <input type="radio" id="btn-rounded" name="r1">
+                                <label for="btn-rounded">Rounded</label>
+                            </div>
+                            <div class="icheck-primary f-inline">
+                                <input type="radio" id="btn-outline" name="r1">
+                                <label for="btn-outline">Outline</label>
+                            </div>
+                        </div>
+                        <label class="text-muted">Size</label>
+                        <div class="container">
+                            <input id="btn-size" type="text" name="btn-size">
+                        </div>
+                        <label class="text-muted pt-3" for="backgrounds-available">Colors available</label>
+                        <div id="backgrounds-available" class="d-flex flex-wrap border p-2">
+                            <a href="javascript:void(0)" class="btn border btn-color bg-transparent" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Transparent"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-primary" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Primary"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-secondary" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Secondary"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-dark" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Dark"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-light" style="min-width: 25px; height:25px;" data-toggle="tooltip" data-placement="bottom" title="White"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-success" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Lightgreen"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-danger" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Darkred"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-warning" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Orangered"></a>
+                            <a href="javascript:void(0)" class="btn border btn-color bg-info" style="min-width: 25px; height:25px" data-toggle="tooltip" data-placement="bottom" title="Light blue"></a>
+                        </div>
+                        <div class="form-group pt-2">
+                            <label class="text-muted" for="text-to-display">Text to display</label>
+                            <input type="text" name="text-to-display" id="text-to-display" class="form-control" placeholder="Button">
+                        </div>
+                        <div class="form-group pt-2">
+                            <label class="text-muted" for="btn-link-href">Where does this button link to?</label>
+                            <input type="text" name="btn-link-href" id="btn-link-href" class="form-control" placeholder="Add a link">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript ">
+    $(document).ready(function() {
+        $('#button-editor-modal').toast('show').draggable({
+            axis: "x",
+            handle: ".toast-header",
+            containment: "parent"
+        });
+        $(".toast-header").css("cursor", "move");
+        button.preview();
+    });
+    $(".btn-color").on("click", (e) => {
+        const colorClass = $(e.currentTarget).attr("class").split(" ")[3];
+        const color = colorClass.split("-")[1];
+        button.changeColor(color);
+    })
+    $("#btn-default").on("click", (e) => {
+        button.changeDisplayStyle("default");
+    })
+    $("#btn-rounded").on("click", (e) => {
+        button.changeDisplayStyle("rounded");
+    })
+    $("#btn-outline").on("click", (e) => {
+        button.changeDisplayStyle("outline");
+    })
+    $("#text-to-display").on("change", (e) => {
+        button.changeText($(e.currentTarget).val());
+    })
+    $("#btn-link-href").on("change", (e) => {
+        button.changeHref($(e.currentTarget).val());
+    })
+</script>

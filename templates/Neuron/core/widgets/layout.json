@@ -1,0 +1,21 @@
+{
+	"Css":[
+			{ "Href":"css/bootstrap.min.css"},
+			{ "Href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"},
+			{ "Href":"css/style.css"},
+			{ "Href":"https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.0.2/sweetalert2.css"}
+		    ],
+	"Fonts": [
+			{"Href":"https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400"}
+		],
+	"Js":[
+			{ "Href":"https://code.jquery.com/jquery-3.5.1.min.js"},
+			{ "Href":"https://cdn.jsdelivr.net/npm/sweetalert2@10"},
+			{ "Href":"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"},
+			{ "Href":"js/jquery.parallax.js"},
+			{ "Href":"js/particles.min.js"},
+			{ "Href":"js/app.js"},
+			{ "Href":"js/smoothscroll.js"},
+			{ "Href":"js/custom.js"}
+		    ]
+}

@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-4 mb-1">
+        <a href="javascript:void(0)" onclick="setStyle('default')">
+            <img src="" alt="" class="cropper_img" style="border-radius:0%; max-width:100%; height:auto;">
+            <h4 class="text-muted text-center">
+                Default
+            </h4>
+        </a>
+    </div>
+    <div class="col-md-4 mb-1">
+        <a href="javascript:void(0)" onclick="setStyle('circle')">
+            <img src="" alt="" class="cropper_img" style="border-radius:50%; max-width:100%; height:auto;">
+            <h4 class="text-muted text-center">
+                Circle
+            </h4>
+        </a>
+    </div>
+</div>
+<script>
+$(".cropper_img").each(function(){ $(this).attr("src",default_img)});
+var setStyle = (s) =>{
+    var item = sandbox.contents().find("."+_id);
+    if(item.length == 0)
+        return;
+
+    let r; 
+    
+    switch(s){
+        case "default":
+            item.css({"border-radius":"0%"})
+            r = "0%";
+        break;
+        case "circle":
+            item.css({"border-radius":"50%"});
+            r = "50%";
+            break;
+    }
+    $.ajax({
+        url:"processors/document.req.php",
+        type:"post",
+        data: {"action":"SetImageStyle","css":r,"id":_id,"page":_page},
+        success : function(data) {
+            $("#ajax").html(data);
+        },
+        error: function() {}
+    })
+}
+
+</script>

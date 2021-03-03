@@ -1,0 +1,62 @@
+[
+    {
+        "Text":"Dashboard",
+        "Icon":"fas fa-tachometer-alt",
+        "Children":   
+        [
+            {"Text":"Overview","Href":"dashboard/overview","Target":"_self"},
+            {"Text":"Mailbox","Href":"dashboard/mailbox","Target":"_self"}
+        ],
+        "Access":"Basic"
+    },
+    {
+        "Text":"Settings",
+        "Icon": "fas fa-cogs",
+        "Children": 
+        [
+            {"Text":"General","Href":"settings/general","Target":"_self"},
+            {"Text":"Account","Href":"settings/account","Target":"_self"},
+            {"Text":"Legal","Href":"settings/legal","Target":"_self"}
+        ],
+        "Access":"Basic"
+    },
+    {
+        "Text":"Design",
+        "Icon":"fas fa-paint-brush",
+        "Children": 
+        [
+            {"Text":"Open Editor","Href":"editor","Target":"_blank"}
+        ],
+        "Access":"Basic"
+    },
+    {
+        "Text":"Blog",
+        "Icon":"fas fa-blog",
+        "Children": 
+        [
+            {"Text":"Overview","Href":"blog/overview","Target":"_self"},
+            {"Text":"Creative","Href":"blog/creative","Target":"_self"}
+        ],
+        "Access":"Blog"
+    },
+    {
+        "Text":"Shop",
+        "Icon":"fas fa-shop",
+        "Children": 
+        [
+            {"Text":"Overview","Href":"ecommence/overview","Target":"_self"}
+        ],
+        "Access":"Shop"
+    }
+    ,
+    {
+        "Text":"Products",
+        "Icon":"fas fa-barcode",
+        "Children": 
+        [
+            {"Text":"Overview","Href":"products/overview","Target":"_self"},
+            {"Text":"Manage","Href":"products/manage","Target":"_self"}
+        ],
+        "Access":"Shop"
+    }
+]

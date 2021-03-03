@@ -1,0 +1,55 @@
+<div id="resetPwdModal" data-backdrop="false" class="modal fade slow" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form id="resetPwdForm">
+      <div class="modal-header justify-content-center">
+      					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      						<i class="fas fa-times" style="color:#FF3636;"></i>
+      					</button>
+      					<h4 class="title title-up">Please verify it's you</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="oldPwd">Old password</label>
+                <input type="password" placeholder="Old password here" id="oldPwd" class="form-control" name="old_pass" required>
+            </div>
+            <div class="col-md-12">
+                <label for="oldPwd2">New password</label>
+                <input type="password" placeholder="New password here" id="oldPwd2" class="form-control" name="new_pass1" required>
+            </div>
+            <div class="col-md-12">
+                <label for="newPwd">New password again</label>
+                <input type="password" placeholder="New password here" id="newPwd" class="form-control" name="new_pass2" required>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" id="submitBtn" class="btn btn-primary btn-block disabled" disabled style="width:100%;">Reset password</button>
+            </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+$("#resetPwdModal").modal('show');
+$("#resetPwdForm").on("change", function(){
+    let btn = $("#submitBtn");
+    btn.removeClass("disabled");
+    btn.removeAttr("disabled");
+});
+$("#resetPwdForm").on("submit", function(event){
+    event.preventDefault();
+    let values = $(this).serialize();
+    $.ajax({
+		   url: "System/requestprocessor.php",
+		   type: "post",
+		   data: values,
+		   success: function(data){$('#requests').html(data);}
+        });
+});
+</script>

@@ -1,0 +1,292 @@
+<div class="row bg-white">
+    <div class="col-12">
+        <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active text-xs" data-toggle="pill" href="#meta_transform" role="tab" aria-controls="meta_transform" aria-selected="true">Transform</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link text-xs" data-toggle="pill" href="#meta_variables" role="tab" aria-controls="meta_variables" aria-selected="true">Variables</a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="card-body m-0 pl-0 pr-0">
+                <div class="tab-content">
+                    <div class="tab-pane show active text-center" id="meta_transform" role="tabpanel" aria-labelledby="meta_transform">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4 text-sm text-left">Position <small>(px)</small> </div>
+                                <div class=" col-4">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-flat btn-default bg-white">X</button>
+                                        </div>
+                                        <input id="x" type="text" class="form-control form-control-sm disabled" disabled="" placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-flat btn-default bg-white">Y</button>
+                                        </div>
+                                        <input id="y" type="text" class="form-control form-control-sm disabled" disabled="" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-4 text-sm text-left">Size <small>(px)</small></div>
+                                <div class="col-4">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-flat btn-default bg-white">W</button>
+                                        </div>
+                                        <input id="w" type="text" class="form-control form-control-sm disabled" disabled placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-flat btn-default bg-white">H</button>
+                                        </div>
+                                        <input id="h" type="text" class="form-control form-control-sm disabled" disabled placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane text-center" id="meta_variables" role="tabpanel" aria-labelledby="meta_variables">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4 text-sm text-left">Primary</div>
+                                <div class="col-8">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-flat btn-default bg-white">#</button>
+                                        </div>
+                                        <input id="primary" type="text" class="form-control form-control-sm disabled" disabled placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-2">
+        <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active text-xs" data-toggle="pill" href="#toolsPane" role="tab" aria-controls="toolsPane" aria-selected="true">Transform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-xs" data-toggle="pill" href="#horizontal" role="tab" aria-controls="horizontal" aria-selected="false">Alignment</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body m-0">
+                <div class="tab-content">
+                    <div class="tab-pane show active text-center" id="toolsPane" role="tabpanel" aria-labelledby="toolsPane">
+                        <button id="copy" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Expand full parent width</br> <small>A.K.A Width 100%</small>"><i class="fas fa-copy"></i></button>
+                        <!-- Remove btn is Done -->
+                        <button id="remove" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Expand full parent width</br> <small>A.K.A Width 100%</small>"><i class="fas fa-trash"></i></button>
+                        <button id="recalculate" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Recalculate positions, set them to auto"><i class="fas fa-ruler"></i></button>
+
+                        <div class="border w-100 m-1"></div>
+                        <!-- Set heigts percent Done -->
+                        <button id="w_100" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Expand full parent width</br> <small>A.K.A Width 100%</small>"><i class="fas fa-arrows-alt-h"></i></button>
+                        <button id="h_100" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Expand full parent height</br> <small>A.K.A Height 100%</small>"><i class="fas fa-arrows-alt-v"></i></button>
+                        <button id="h_100vh" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Expand to 100% of the viewport height</br> <small>A.K.A Height 100VH</small>"><i class="fas fa-expand-arrows-alt"></i></button>
+                        <button id="gec" class="btn btn-sm btn-default bg-white">GEC</button>
+                    </div>
+                    <div class="tab-pane fade text-center" id="horizontal" role="tabpanel" aria-labelledby="horizontal">
+
+                        <button id="h-left" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Align left"><i class="fas fa-align-left"></i></button>
+                        <button id="h-center" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Align center"><i class="fas fa-align-center"></i></button>
+                        <button id="h-right" class="btn btn-sm btn-default bg-white" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Align right"><i class="fas fa-align-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 pl-2 pr-2">
+        <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active text-xs" data-toggle="pill" href="#sections" role="tab" aria-controls="sections" aria-selected="true">Sections</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body m-0 p-0 overflow" style="overflow-y:auto;max-height:250px;">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                    <div class="tab-pane fade show active mt-1" id="sections" role="tabpanel" aria-labelledby="sections">
+                        <!-- Sections goes here -->
+                        <ul class="list-group pr-1" id="sections-container" style="background-color:#fdfdfd;"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="page_globals" role="tabpanel" aria-labelledby="page_globals">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const elements_form = [$("#w"), $("#h"), $("#x"), $("#y")];
+    const updateSidebar = (p) => {
+        elements_form[0].val(Math.round(p.width()));
+        elements_form[1].val(Math.round(p.height()));
+        elements_form[2].val(Math.round(p.offset().top));
+        elements_form[3].val(Math.round(p.offset().left));
+
+        if (isFullWidth(p)) {
+            if (!p.hasClass("disabled"))
+                elements_form[0].addClass("disabled");
+            elements_form[0].attr("disabled", "");
+
+        } else {
+            if (!p.hasClass("disabled"))
+                elements_form[0].removeClass("disabled");
+            elements_form[0].removeAttr("disabled");
+        }
+        elements_form[1].removeClass("disabled");
+        elements_form[1].removeAttr("disabled");
+    }
+
+    const isFullWidth = (p) => {
+        let data = p.data("panel");
+        switch (data) {
+            case "section":
+                return true
+            case "portofolio":
+                return true
+            case "header":
+                return true
+            case "footer":
+                return true
+            default:
+                return false;
+        }
+    }
+
+    /** Change element width */
+    $("#w").on("change", (e) => {
+        if (element.val === null)
+            return;
+        else {
+            const value = e.currentTarget.value;
+            element.val.width(value);
+            element.setSize("width", value, "px");
+        }
+    });
+    /** Change element height */
+    $("#h").on("change", (e) => {
+        if (element.val === null)
+            return;
+        else {
+            const value = e.currentTarget.value;
+            element.val.height(value);
+            element.setSize("height", value, "px");
+        }
+    });
+    /** Make elemet width 100% */
+    $("#w_100").on("click", (e) => {
+        element.val.width("100%");
+        element.setSize("width", "100", "%");
+    });
+    /** Make elemet height 100% */
+    $("#h_100").on("click", (e) => {
+        element.val.height("100%");
+        element.setSize("height", "100", "%");
+    });
+    /** Make elemet width and height 100% of viewport */
+    $("#h_100vh").on("click", (e) => {
+        element.val.toggleClass("vh-100");
+        let hasClass = element.val.hasClass("vh-100");
+        hasClass ? element.addClass("vh-100") : element.removeClass("vh-100");
+    });
+    /** Remove Element */
+    $("#remove").on("click", (e) => {
+        element.remove();
+    });
+    /** Set element position to auto */
+    $("#recalculate").on("click", (e) => {
+        element.val.css({
+            'width': 'auto',
+            'height': 'auto',
+            'top': 'auto',
+            'left': 'auto'
+        });
+        element.setSizes(
+            ['width', 'height', 'top', 'left'], ['auto', 'auto', 'auto', 'auto'], ['', '', '', '']
+        );
+    });
+    /** Change children position horizontally */
+    $("#h-center").on("click", (e) => {
+        if (element.val.css('display') === 'inline-block') {
+            //ad to the parent of the element class text-center
+            const $this = element.val;
+            const parent = element.val.parent();
+            element.val = parent;
+            element.val.toggleClass("text-center");
+            let hasClass1 = element.val.hasClass("text-center");
+            element.removeClass(['text-left', 'text-right']);
+            element.val.removeClass('text-left text-right');
+            hasClass1 ? element.addClass("text-center") : element.removeClass("text-center");
+            element.val = $this;
+            element.val.click();
+        } else {
+            element.val.toggleClass("mx-auto");
+            let hasClass1 = element.val.hasClass("mx-auto");
+            element.removeClass(['ml-auto', 'mr-auto']);
+            hasClass1 ? element.addClass("mx-auto") : element.removeClass("mx-auto");
+        }
+    });
+    $("#h-left").on("click", (e) => {
+        if (element.val.css('display') === 'inline-block') {
+            //ad to the parent of the element class text-left
+            const $this = element.val;
+            const parent = element.val.parent();
+            element.val = parent;
+            element.val.toggleClass("text-left");
+            let hasClass1 = element.val.hasClass("text-left");
+            element.removeClass(['text-center', 'text-right']);
+            element.val.removeClass('text-center text-right');
+            hasClass1 ? element.addClass("text-left") : element.removeClass("text-left");
+            element.val = $this;
+            element.val.click();
+        } else {
+            element.val.toggleClass("mr-auto");
+            let hasClass1 = element.val.hasClass("mr-auto");
+            element.removeClass(['ml-auto', 'mx-auto']);
+            hasClass1 ? element.addClass("mr-auto") : element.removeClass("mr-auto");
+        }
+    });
+    $("#h-right").on("click", (e) => {
+        if (element.val.css('display') === 'inline-block') {
+            //ad to the parent of the element class text-right
+            const $this = element.val;
+            const parent = element.val.parent();
+            element.val = parent;
+            element.val.toggleClass("text-right");
+            let hasClass1 = element.val.hasClass("text-right");
+            element.removeClass(['text-left', 'text-center']);
+            element.val.removeClass('text-center text-left');
+            hasClass1 ? element.addClass("text-right") : element.removeClass("text-right");
+            element.val = $this;
+            element.val.click();
+        } else {
+            element.val.toggleClass("ml-auto");
+            let hasClass1 = element.val.hasClass("ml-auto");
+            element.removeClass(['mx-auto', 'mr-auto']);
+            hasClass1 ? element.addClass("ml-auto") : element.removeClass("ml-auto");
+        }
+    });
+    $("#gec").on("click", (e) => {
+        geteditablecontent();
+    })
+</script>

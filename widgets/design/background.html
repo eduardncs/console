@@ -1,0 +1,130 @@
+<div id="section-toast" style="position:absolute; top:10%; right:10%; width:30%; min-width:300px; z-index:20;" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+    <div class="toast-header" style="min-height:50px;">
+        <div class="container m-0 p-0">
+            <h4 class="float-left pl-2 pt-2">Change background settings</h4>
+            <button type="button" data-dismiss="toast" id="closemedia" class="btn float-right pr-1 pt-3" aria-label="Close">
+        <i class="fas fa-times" style="color:orangered;"></i>
+      </button>
+        </div>
+    </div>
+    <div class="toast-body border-bottom p-0" style="background-color: #fff;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card m-0">
+                    <div id="section_preview" class="card-body p-0 container" style="height:150px; background-image:url(images/placeholder.jpg);background-size:100% 100%; background-repeat:no-repeat; background-position:center; "></div>
+                    <div class="card-footer text-center">
+                        <a href="javascript:void(0)" id="btnMedia" class="btn btn-default btn-pill btn-sm">Source</a>
+                        <a href="javascript:void(0)" id="btnSetting" onclick="loadMediaContents('widgets/design/animations.html')" class="btn btn-default btn-pill btn-sm">Animations</a>
+                        <a href="javascript:void(0)" id="btnSaveBackgroundData" class="btn btn-pill btn-sm btn-outline-success float-right disabled" disabled="true" style="border:1px solid #28a745;"><i class="fas fa-check"></i> Save</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 border-top">
+                <div class="card p-0">
+                    <div class="card-body p-0" style="max-height:350px;overflow-y:scroll;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="title text-center pt-2 pb-2 border-bottom">Scaling and Positioning</h5>
+                            </div>
+                        </div>
+                        <div class="form-group pl-3 pr-3">
+                            <label class="text-muted" for="scale_w">Width of background</label>
+                            <input id="scale_w" type="text" name="scale_w" value="">
+                        </div>
+                        <div class="form-group pl-3 pr-3">
+                            <label class="text-muted" for="scale_h">Height of background</label>
+                            <input id="scale_h" type="text" name="scale_h" value="">
+                        </div>
+                        <div class="form-group pl-3 clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" name="bg-repeat" id="bg-repeat">
+                                <label class="text-muted" for="bg-repeat">
+                                            Repeat the background ?
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group pl-3 pr-3">
+                            <label class="text-muted" for="bg-position">Where is it positioned ?</label>
+                            <select name="bg-position" id="bg-position" class="form-control">
+                                    <option selected="" disabled="">Select one</option>
+                                    <option value="0% 0%">Left Top</option>
+                                    <option value="0% 50%">Left Center</option>
+                                    <option value="0% 100%">Left Bottom</option>
+                                    <option value="100% 0%">Right Top</option>
+                                    <option value="100% 50%">Right Center</option>
+                                    <option value="100% 100%">Right Bottom</option>
+                                    <option value="50% 0%">Center Top</option>
+                                    <option value="50% 50%">Center</option>
+                                    <option value="50% 100%">Center Bottom</option>
+                                </select>
+                        </div>
+                        <div class="form-group pl-3 pr-3">
+                            <label class="text-muted" for="bg-color">What is the background color ? <small>(Hex or RGBA)</small></label>
+                            <input class="form-control" type="text" name="bg-color" id="bg-color" placeholder="Click to select color">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#section-toast').toast('show').draggable({
+            axis: "x",
+            handle: ".toast-header",
+            containment: "parent"
+        });
+        $(".toast-header").css("cursor", "move");
+        background.preview();
+        background.populate();
+    });
+
+    $("#btnMedia").on("click", (e) => {
+        media.show();
+    })
+    $("#btnSaveBackgroundData").on("click", (e) => {
+        background.save();
+    })
+
+    $('#bg-color').colorpicker({
+        format: "rgba"
+    });
+
+    $("#scale_w").change((e) => {
+        $("#btnSaveBackgroundData").removeClass("disabled");
+        $("#btnSaveBackgroundData").prop("disabled", false);
+        element.val.css("background-size", $(e.currentTarget).val() + "%" + " " + $("#scale_h").val() + "%");
+    })
+    $("#scale_h").change((e) => {
+        $("#btnSaveBackgroundData").removeClass("disabled");
+        $("#btnSaveBackgroundData").prop("disabled", false);
+        element.val.css("background-size", $("#scale_w").val() + "%" + " " + $(e.currentTarget).val() + "%");
+    })
+    $("#bg-repeat").change((e) => {
+        $("#btnSaveBackgroundData").removeClass("disabled");
+        $("#btnSaveBackgroundData").prop("disabled", false);
+        const isChecked = $("#bg-repeat").is(":checked");
+        isChecked ? element.val.css("background-repeat", "repeat") : element.val.css("background-repeat", "no-repeat");
+    })
+    $("#bg-position").change((e) => {
+        $("#btnSaveBackgroundData").removeClass("disabled");
+        $("#btnSaveBackgroundData").prop("disabled", false);
+        element.val.css("background-position", $(e.currentTarget).val());
+    })
+    $("#bg-color").change((e) => {
+        $("#btnSaveBackgroundData").removeClass("disabled");
+        $("#btnSaveBackgroundData").prop("disabled", false);
+        element.val.css("background-color", $(e.currentTarget).val());
+    })
+
+    var selectMedia = (url, prop) => {
+        background.selectMedia(url, prop);
+        setTimeout(() => {
+            geteditablecontent()
+        }, 1500);
+    }
+</script>

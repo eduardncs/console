@@ -1,0 +1,122 @@
+<div id="call-to-action" data-backdrop="false" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<i class="fas fa-times" style="color:#FF3636;"></i>
+				</button>
+                <h4 class="title title-up">Call to action blocks</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-center py-2">
+                    To add a section block simply drag and drop it into Sections panel from the right sidebar
+                </h5>
+                <ul class="list-group" id="sections-container-add">
+                    <li class="list-group-item border-0 p-0" data-model="call-to-action" data-id="0">
+                        <section class="py-4 mt-2 section">
+                            <div class="overlay" style="display: none; background-color:rgba(255,255,255,0.3)">
+                                <div class="container-fluid h-100 d-flex">
+                                    <a href="javascript:void(0)" class="btn btn-primary mx-auto align-self-center btn-drag">Drag me to section panel</a>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-8 text-center">
+                                        <p class="lead">
+                                            "Separated they live in Bookmarksgrove right at the coast of the Semantics, far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast."
+                                        </p>
+
+                                        <p class="mt-5 mt-sm-4">
+                                            <a class="btn btn-primary" href="https://www.rosance.com">Download</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                    <!-- Call to Action 2 -->
+                    <li class="list-group-item border-0 p-0" data-model="call-to-action" data-id="1">
+                        <section class="py-4 mt-2 section">
+                            <div class="overlay" style="display: none; background-color:rgba(255,255,255,0.3)">
+                                <div class="container-fluid h-100 d-flex">
+                                    <a href="javascript:void(0)" class="btn btn-primary mx-auto align-self-center btn-drag">Drag me to section panel</a>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-6 text-center">
+                                        <h1>Call to Action</h1>
+                                        <p class="lead">
+                                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts
+                                        </p>
+                                        <p class="mt-5 mt-sm-4">
+                                            <a class="btn btn-secondary" href="https://www.rosance.com">Download</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+
+                    <li class="list-group-item border-0 p-0" data-model="call-to-action" data-id="2">
+                        <section class="py-4 mt-2 section">
+                            <div class="overlay" style="display: none; background-color:rgba(255,255,255,0.3)">
+                                <div class="container-fluid h-100 d-flex">
+                                    <a href="javascript:void(0)" class="btn btn-primary mx-auto align-self-center btn-drag">Drag me to section panel</a>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-sm-8 col-md-6 col-lg-6 text-center">
+                                        <h2>
+                                            <strong>Right at the coast of the Semantics, a large language ocean.</strong>
+                                        </h2>
+                                        <p class="mt-5 mt-sm-4">
+                                            <a class="btn btn-outline-primary" href="https://www.rosance.com">Download</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#call-to-action').modal('show');
+    });
+    $(".section").hover((e) => {
+        $(e.currentTarget).find(".overlay").fadeIn();
+    }, (e) => {
+        $(e.currentTarget).find(".overlay").fadeOut();
+    })
+
+    new Sortable(document.getElementById("sections-container-add"), {
+        ghostClass: 'active',
+        animation: 150,
+        sort: false,
+        handle: ".btn-drag",
+        group: {
+            name: 'shared',
+            pull: 'clone'
+        },
+        onMove: (event, originalEvent) => {
+            let dragEl = '<div class="align-self-center"><span class="float-left mr-2 bg-white" style="width:50px; height:27px;"><div class="border h-100 w-100" style="background:rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box"></div></span> Section</div>';
+            let $this = $(event.dragged);
+            $this.removeClass("p-0 border-0");
+            $this.addClass("bg-primary section text-center d-flex");
+            $this.attr("data-corespondent", ID());
+            $this.css({
+                'height': '35px',
+                'cursor': 'move'
+            });
+            $this.html(dragEl);
+        },
+        onStart: (event) => {
+            $('#call-to-action').modal('hide');
+        }
+    });
+</script>

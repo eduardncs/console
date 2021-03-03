@@ -1,0 +1,9 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9]+)$ $1.php [NC,L]
+
+#Alternate default index page
+DirectoryIndex home.php
+ErrorDocument 404 /404.html

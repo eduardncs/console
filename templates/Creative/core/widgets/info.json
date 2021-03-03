@@ -1,0 +1,8 @@
+{
+    "Title": "New project",
+    "Logo": "//localhostimages/placeholder.jpg",
+    "Favicon": "https://rosance.com/images/placeholder.jpg",
+    "Curency": "EUR",
+    "Meta": { "Description": "Hello I am a website and I've been created by Rosance", "Author": "ROSANCE" },
+    "Maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.070907689272!2d144.96551661539212!3d-37.81180807975275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642c99e207041%3A0xc358d059bfe29278!2sRussell+St%2C+Melbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1486986489826"
+}

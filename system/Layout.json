@@ -1,0 +1,26 @@
+[
+    {
+        "body": 
+        [
+            {"hold-transition": "true"},
+            {"sidebar-mini": "true"},
+            {"layout-fixed":  "true"},
+            {"text-sm": "false"},
+            {"accent": "orange"}
+        ],
+        "navbar-brand":
+        [
+            {"navbar":"light"},
+            {"navbar":"orange"}
+        ],
+        "aside-sidebar":
+        [
+            {"sidebar-light":"orange"}
+        ],
+        "inside-sidebar":
+        [
+            {"nav-child-indent":"true"},
+            {"nav-compact":"true"}
+        ]
+    }
+]

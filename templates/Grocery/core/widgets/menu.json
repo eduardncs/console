@@ -1,0 +1,6 @@
+{"Brand":{"Text":"Rosance","Href":"home","Target":"_self"},"Brand-img":{"Shown":"true","Href":"img\/favicon.ico","Alt":""},"Collapsed":{"Text":"MENIU"},"Style":{"Scheme":"navbar-light","Background":""},
+"Menu":[{"Key":"4163407145f53e48292b6b","P_Key":"0","Text":"Home","Href":"home","Target":"_self"},
+    {"Key":"4163407s325f53e41233bb","P_Key":"1","Text":"Parent 1"},
+    {"Key":"4163407s325f53e41233ba","P_Key":"4163407s325f53e41233bb","Text":"Chield 1","Href":"home","Target":"_self"},
+    {"Key":"4163407s325f53e41233bb","P_Key":"4163407s325f53e41233bb","Text":"Chield 1 x","Href":"home","Target":"_self"},
+    {"Key":"6505209255fba204bda386","P_Key":"0","Text":"Contact","Href":"contact","Target":"_self"}]}

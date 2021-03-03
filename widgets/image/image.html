@@ -1,0 +1,74 @@
+<div id="image-editor-widget" style="position:absolute; top:10%; right:10%; width:30%; min-width:300px; z-index:20;" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+    <div class="toast-header" style="min-height:50px;">
+        <div class="container m-0 p-0">
+            <h4 class="float-left pl-2 pt-2">Image editor</h4>
+            <button type="button" data-dismiss="toast" id="closemedia" class="btn float-right pr-1 pt-3" aria-label="Close">
+        <i class="fas fa-times" style="color:orangered;"></i>
+      </button>
+        </div>
+    </div>
+    <div class="toast-body border-bottom p-0" style="background-color: #fff;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card m-0">
+                    <div class="card-body p-0 container">
+                        <img src="images/default.png" id="image_preview" alt="" style="width:100%;height:200px">
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="javascript:void(0)" id="btnMedia" class="btn btn-default btn-pill btn-sm">Source</a>
+                        <a href="javascript:void(0)" id="btnAnim" onclick="loadMediaContents('widgets/image/crop-image.html','media-contents')" class="btn btn-default btn-pill btn-sm">Crop</a>
+                        <a href="javascript:void(0)" id="btnSaveImageData" class="btn btn-pill btn-sm btn-outline-success float-right disabled" disabled="true" style="border:1px solid #28a745;"><i class="fas fa-check"></i> Save</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 border-top">
+                <div class="card p-0 m-0">
+                    <div class="card-body p-0 m-0" style="min-height:150px;">
+                        <h5 class="title text-center pt-2 pb-2 border-bottom">Image options</h5>
+                        <div class="form-group pl-3 pr-3">
+                            <label class="text-muted" for="img_title"><i class="fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Got more to say about this pic? Add it here. People see this info when they hover on the image, or when it opens in a pop-up."></i> &nbsp; What's this image title ?</label>
+                            <input type="text" name="img_title" class="form-control" id="img_title" placeholder="Image title">
+                        </div>
+
+                        <div class="form-group pl-3 pr-3">
+                            <label class="text-muted" for="img_alt"><i class="fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Search engines and accessibility tools can't see images, but they can read alt text. Add a description to improve your site’s SEO and accessibility."></i> &nbsp; Tell us what is in this image ?</label>
+                            <input type="text" class="form-control" name="img_alt" id="img_alt" placeholder="Image alt">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready((e) => {
+        $('#image-editor-widget').toast('show').draggable({
+            axis: "x",
+            handle: ".toast-header",
+            containment: "parent"
+        })
+        $(".toast-header").css("cursor", "move");
+        image.preview();
+    })
+    $("#img_title").on("change", (e) => {
+        $("#btnSaveImageData").prop("disabled", false);
+        $("#btnSaveImageData").removeClass("disabled");
+    })
+    $("#img_alt").on("change", (e) => {
+        $("#btnSaveImageData").prop("disabled", false);
+        $("#btnSaveImageData").removeClass("disabled");
+    })
+    $("#btnMedia").on("click", (e) => {
+        media.show();
+    })
+    $("#btnSaveImageData").on("click", (e) => {
+        image.saveMeta();
+    })
+    var selectMedia = (url, prop) => {
+        image.changeSource(url);
+        setTimeout(() => {
+            geteditablecontent()
+        }, 1500);
+    }
+</script>

@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9]+)$ $1.php [NC,L]
+#Rule for post
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^post/([a-zA-Z0-9-]+)/?$ post.php?post=$1 [NC,L]
+#Alternate default index page
+DirectoryIndex home.php
+ErrorDocument 404 /404.html

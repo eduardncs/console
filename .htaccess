@@ -1,0 +1,44 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9-^\.]+)$ $1.php [NC,L]
+
+#Rewrite rules for Settings
+#General rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^projects/create create.php [NC,L]
+
+
+#Rewrite rules for Settings
+#General rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^settings/([a-zA-Z0-9-]+)/?$ settings.php?pg=$1 [NC,L]
+
+#Rewrite rule for dashboard
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^dashboard/overview dashboard.php [NC,L]
+
+#Rewrite rule for blog
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule blog/([a-zA-Z0-9-]+)/?$ blog-$1.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule blog/overview/author blog-overview.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule blog/creative/([a-zA-Z0-9-]+)/?$ blog-creative.php [NC,L]
+
+#Rewrite rule for products
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule products/([a-zA-Z0-9-]+)/?$ products-$1.php [NC,L]
+
+#Rewrite rule for products
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule products/manage/([a-zA-Z0-9-]+)/?$ products-manage.php?productID=$1 [NC,L]
+
+#Rewrite rules for Mailbox
+#Default rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^dashboard/mailbox mailbox.php [NC,L]
+
+#Alternate default index page
+DirectoryIndex dashboard.php

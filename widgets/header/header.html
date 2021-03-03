@@ -1,0 +1,33 @@
+<div id="header" data-backdrop="false" class="modal right fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<i class="fas fa-times" style="color:#FF3636;"></i>
+				</button>
+                <h4 class="title title-up">Header options</h4>
+            </div>
+            <div class="modal-body">
+                <img src="images/header.svg" alt="" class="img" style="width:100%;">
+                <div class="dropdown-menu border-0 show" style="position:relative; top:0%; width:100%; box-shadow:none;">
+                    <a href="javascript:void(0)" class="dropdown-item" onClick="getwidget('widgets/header/layout.html')">
+                        <i class="fas fa-pen mr-2"></i> Change style
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="javascript:void(0)" class="dropdown-item" onClick="getwidget('widgets/menu.php')">
+                        <i class="fas fa-list-ul mr-2"></i> Site menu
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="javascript:void(0)" class="dropdown-item" onClick="getwidget('widgets/socialwidget.php')">
+                        <i class="fab fa-facebook mr-2"></i> Social media links
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#header').modal('show');
+    });
+</script>

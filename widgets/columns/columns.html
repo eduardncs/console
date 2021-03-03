@@ -1,0 +1,42 @@
+<div id="section-column-widget" style="position:absolute; top:10%; right:10%; width:30%; min-width:400px; z-index:20;" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+    <div class="toast-header" style="min-height:50px;">
+        <div class="container m-0 p-0">
+            <h4 class="float-left pl-2 pt-2">Rows and Columns</h4>
+            <button type="button" data-dismiss="toast" class="btn float-right pr-1 pt-3" aria-label="Close">
+        <i class="fas fa-times" style="color:orangered;"></i>
+      </button>
+        </div>
+    </div>
+    <div class="toast-body border-bottom p-0" style="background-color: #fff;">
+        <div class="m-2" id="rowsHolder"></div>
+        <div class="text-center m-2 pb-2" id="col_tools">
+            <button id="add_row_btn" class="btn btn-flat btn-default bg-white"><i class="fas fa-plus"></i> Row</button>
+            <button id="remove_element_btn" class="btn btn-flat btn-default bg-white disabled" disabled="" data-toggle="tooltip" data-placement="bottom" title="Remove"><i class="fas fa-trash"></i></button>
+            <button id="add_column_btn" class="btn btn-flat btn-default bg-white disabled" disabled=""><i class="fas fa-plus"></i> Column</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#section-column-widget').toast("show").draggable({
+            axis: "x",
+            handle: ".toast-header",
+            containment: "parent"
+        });
+        $(".toast-header").css("cursor", "move");
+        column.fetchData();
+    });
+
+    $("#section-column-widget").on("hidden.bs.toast", function() {
+        //column.restoreStyles();
+    })
+    $("#add_row_btn").on("click", (e) => {
+        column.addRowManual();
+    });
+    $("#remove_element_btn").on("click", (e) => {
+        column.removeMe();
+    })
+    $("#add_column_btn").on("click", (e) => {
+        column.addColManual();
+    });
+</script>

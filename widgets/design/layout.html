@@ -1,0 +1,744 @@
+<div id="layout-toast" style="position:absolute; top:10%; right:10%; width:30%; min-width:300px; z-index:20;" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+    <div class="toast-header" style="min-height:50px; cursor:move;">
+        <div class="container m-0 p-0">
+            <h4 class="float-left pl-2 pt-2">Layout editor</h4>
+            <button type="button" data-dismiss="toast" id="closemedia" class="btn float-right pr-1 pt-3" aria-label="Close">
+        <i class="fas fa-times" style="color:orangered;"></i>
+      </button>
+        </div>
+    </div>
+    <div class="toast-body border-bottom p-0 overflow" style="background-color: #fff; overflow-y: auto; max-height: 600px;">
+        <div class="card card-primary card-outline card-outline-tabs m-0">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link text-xs active" data-toggle="pill" href="#layout_margins" role="tab" aria-controls="layout_margins" aria-selected="true">Margins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-xs" data-toggle="pill" href="#layout_padding" role="tab" aria-controls="layout_padding" aria-selected="false">Padding</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-xs" data-toggle="pill" href="#layout_shadow" role="tab" aria-controls="layout_shadow" aria-selected="false">Shadow</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body m-0 pl-0 pr-0">
+                <div class="tab-content">
+                    <div class="tab-pane show text-center active" id="layout_margins" role="tabpanel" aria-labelledby="layout_margins">
+                        <div class="card card-default mx-2">
+                            <div class="card-header">
+                                <h3 class="card-title">General</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <input type="text" name="mg" id="mg">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 5 this option will add a margin to the element on all sides
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-default mx-2 collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Axis</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display:none;">
+                                <input type="text" name="mx" id="mx">
+                                <input type="text" name="my" id="my">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 5 this option will add a margin to the element on a desired axis
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-default mx-2 collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Particular</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display: none;">
+                                <input type="text" name="mt" id="mt">
+                                <input type="text" name="mb" id="mb">
+                                <input type="text" name="ml" id="ml">
+                                <input type="text" name="mr" id="mr">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 5 this option will add a margin to the element on any side
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade text-center p-0" id="layout_padding" role="tabpanel" aria-labelledby="layout_padding">
+                        <div class="card card-default mx-2">
+                            <div class="card-header">
+                                <h3 class="card-title">General</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <input type="text" name="pg" id="pg">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 5 this option will add an interior margin to the element on all sides
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-default mx-2 collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Axis</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display:none;">
+                                <input type="text" name="px" id="px">
+                                <input type="text" name="py" id="py">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 5 this option will add an interior margin to the element on a desired axis
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-default mx-2 collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Particular</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display: none;">
+                                <input type="text" name="pt" id="pt">
+                                <input type="text" name="pb" id="pb">
+                                <input type="text" name="pl" id="pl">
+                                <input type="text" name="pr" id="pr">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 5 this option will add an interior margin to the element on any side
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade text-center p-0" id="layout_shadow" role="tabpanel" aria-labelledby="layout_shadow">
+                        <div class="card card-default mx-2">
+                            <div class="card-header">
+                                <h3 class="card-title">General</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <input type="text" name="sg" id="sg">
+                                <div class="attachment-block clearfix mt-3">
+                                    <div class="attachment-pushed m-0 p-0">
+                                        <div class="attachment-text">
+                                            On a level from 0 to 3 this option will add a shadow effect to the element on all sides
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#layout-toast').toast('show').draggable({
+            handle: ".toast-header ",
+            cursor: "move"
+        });
+        $(".toast-header ").css("cursor ", "move ");
+    })
+    var m_val = {
+        iAll: ['m-0', 'm-1', 'm-2', 'm-3', 'm-4', 'm-5', 'mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5', 'my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5', 'mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5', 'mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', 'mb-5', 'ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5', 'mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5'],
+        iAxis: ['m-0', 'm-1', 'm-2', 'm-3', 'm-4', 'm-5'],
+        iParticular: ['m-0', 'm-1', 'm-2', 'm-3', 'm-4', 'm-5'],
+        get All() {
+            return this.iAll;
+        },
+        get Axis() {
+            return this.iAxis;
+        },
+        get Particular() {
+            return this.iParticular;
+        }
+    };
+    var p_val = {
+        iAll: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5', 'px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5', 'py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5', 'pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5', 'pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5', 'pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5', 'pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5'],
+        iAxis: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'],
+        iParticular: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'],
+        get All() {
+            return this.iAll;
+        },
+        get Axis() {
+            return this.iAxis;
+        },
+        get Particular() {
+            return this.iParticular;
+        }
+    };
+    var hasClass = (values) => {
+        for (let i = 0; i < values.length; i++) {
+            if (element.val.hasClass(values[i]))
+                return true;
+        }
+        return false;
+    }
+    var isClass = (values) => {
+        for (let i = 0; i < values.length; i++) {
+            if (element.val.hasClass(values[i])) {
+                return values[i].match(/\d+/g)[0];
+            }
+            return 0;
+        }
+    }
+    var reloadSliders = (Scase, except) => {
+        if (Scase === "p") {
+            const Psliders = [$("#pg"), $("#px"), $("#py"), $("#pt"), $("#pb"), $("#pl"), $("#pr")];
+            const Psarrays = [
+                ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'],
+                ['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5'],
+                ['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5'],
+                ['pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5'],
+                ['pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5'],
+                ['pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5'],
+                ['pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5']
+            ]
+            for (let i = 0; i < Psliders.length; i++) {
+                if (except === i)
+                    continue;
+                const Pinstance = Psliders[i].data("ionRangeSlider");
+                const Pval = isClass(Psarrays[i]);
+                console.log(Pval);
+                Pinstance.update({
+                    from: Pval
+                })
+            }
+        } else if (Scase === "m") {
+            const Msliders = [$("#mg"), $("#mx"), $("#my"), $("#mt"), $("#mb"), $("#ml"), $("#mr")];
+            const Msarrays = [
+                ['m-0', 'm-1', 'm-2', 'm-3', 'm-4', 'm-5'],
+                ['mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5'],
+                ['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5'],
+                ['mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5'],
+                ['mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', 'mb-5'],
+                ['ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5'],
+                ['mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5']
+            ]
+            for (let i = 0; i < Msliders.length; i++) {
+                if (except === i)
+                    continue;
+                const Minstance = Msliders[i].data("ionRangeSlider");
+                const Mval = isClass(Msarrays[i]);
+                Minstance.update({
+                    from: Mval
+                })
+            }
+        }
+    }
+    var switchVal = (v) => {
+        console.log(v);
+    }
+
+
+    $('#mg').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['m-0', 'm-1', 'm-2', 'm-3', 'm-4', 'm-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Margin ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (val == 0) {
+                element.removeClass(m_val.All);
+                return;
+            }
+            if (hasClass(m_val.All)) {
+                element.removeClass(m_val.All).then(_ => {
+                    element.val.addClass("m-" + val);
+                    element.addClass("m-" + val);
+                    reloadSliders("m", 0);
+                });
+            } else {
+                element.val.addClass("m-" + val);
+                element.addClass("m-" + val);
+                reloadSliders("m", 0);
+            }
+        }
+    })
+    $('#mx').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "X ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (val == 0) {
+                element.removeClass([...m_val.Axis, ...['mx-0', 'mx-1', 'x-2', 'mx-3', 'mx-4', 'mx-5']]);
+                return;
+            }
+            if (hasClass([...m_val.Axis, ...['ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5', 'mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5', 'mx-0', 'mx-1', 'x-2', 'mx-3', 'mx-4', 'mx-5']])) {
+                element.removeClass([...m_val.Axis, ...['ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5', 'mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5', 'mx-0', 'mx-1', 'x-2', 'mx-3', 'mx-4', 'mx-5']]).then(_ => {
+                    element.val.addClass("mx-" + val);
+                    element.addClass("mx-" + val);
+                    reloadSliders("m", 1);
+                });
+            } else {
+                element.val.addClass("mx-" + val);
+                element.addClass("mx-" + val);
+                reloadSliders("m", 1);
+            }
+        }
+    })
+    $('#my').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Y",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (val == 0) {
+                element.removeClass([...m_val.Axis, ...['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5']]);
+                return;
+            }
+            if (hasClass([...m_val.Axis, ...['mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5', 'mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', 'mb-5', 'my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5']])) {
+                element.removeClass([...m_val.Axis, ...['mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5', 'mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', ',mb-5', 'my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5']]).then(_ => {
+                    element.val.addClass("my-" + val);
+                    element.addClass("my-" + val);
+                    reloadSliders("m", 2);
+                });
+            } else {
+                element.val.addClass("my-" + val);
+                element.addClass("my-" + val);
+                reloadSliders("m", 2);
+            }
+        }
+    })
+    $('#mt').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Top",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...m_val.Particular, ...['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5', 'mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5']])) {
+                element.removeClass([...m_val.Particular, ...['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5', 'mt-0', 'mt-1', 'mt-2', 'mt-3', 'mt-4', 'mt-5']]).then(_ => {
+                    element.val.addClass("mt-" + val);
+                    element.addClass("mt-" + val);
+                    reloadSliders("m", 3);
+                });
+            } else {
+                element.val.addClass("mt-" + val);
+                element.addClass("mt-" + val);
+                reloadSliders("m", 3);
+            }
+        }
+    })
+    $('#mb').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', 'mb-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Bot ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...m_val.Particular, ...['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5', 'mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', 'mb-5']])) {
+                element.removeClass([...m_val.Particular, ...['my-0', 'my-1', 'my-2', 'my-3', 'my-4', 'my-5', 'mb-0', 'mb-1', 'mb-2', 'mb-3', 'mb-4', 'mb-5']]).then(_ => {
+                    element.val.addClass("mb-" + val);
+                    element.addClass("mb-" + val);
+                    reloadSliders("m", 4);
+                });
+            } else {
+                element.val.addClass("mb-" + val);
+                element.addClass("mb-" + val);
+                reloadSliders("m", 4);
+            }
+        }
+    })
+    $('#ml').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Left ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...m_val.Particular, ...['mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5', 'ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5']])) {
+                element.removeClass([...m_val.Particular, ...['mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5', 'ml-0', 'ml-1', 'ml-2', 'ml-3', 'ml-4', 'ml-5']]).then(_ => {
+                    element.val.addClass("ml-" + val);
+                    element.addClass("ml-" + val);
+                    reloadSliders("m", 5);
+                });
+            } else {
+                element.val.addClass("ml-" + val);
+                element.addClass("ml-" + val);
+                reloadSliders("m", 5);
+            }
+        }
+    })
+    $('#mr').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Right ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...m_val.Particular, ...['mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5', 'mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5']])) {
+                element.removeClass([...m_val.Particular, ...['mx-0', 'mx-1', 'mx-2', 'mx-3', 'mx-4', 'mx-5', 'mr-0', 'mr-1', 'mr-2', 'mr-3', 'mr-4', 'mr-5']]).then(_ => {
+                    element.val.addClass("mr-" + val);
+                    element.addClass("mr-" + val);
+                    reloadSliders("m", 6);
+                });
+            } else {
+                element.val.addClass("mr-" + val);
+                element.addClass("mr-" + val);
+                reloadSliders("m", 6);
+            }
+        }
+    })
+    $('#pg').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Padding ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = $("#pg").val();
+            if (val == 0) {
+                element.removeClass(p_val.All);
+                return;
+            }
+            if (hasClass(p_val.All)) {
+                element.removeClass(p_val.All).then(_ => {
+                    element.val.addClass("p-" + val);
+                    element.addClass("p-" + val);
+                    reloadSliders("p", 0);
+                });
+            } else {
+                element.val.addClass("p-" + val);
+                element.addClass("p-" + val);
+                reloadSliders("p", 0);
+            }
+        }
+    })
+    $('#px').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "X ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (val == 0) {
+                element.removeClass([...p_val.Axis, ...['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5']]);
+                return;
+            }
+            if (hasClass([...p_val.Axis, ...['pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5', 'pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5', 'px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5']])) {
+                element.removeClass([...p_val.Axis, ...['pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5', 'pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5', 'px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5']]).then(_ => {
+                    element.val.addClass("px-" + val);
+                    element.addClass("px-" + val);
+                    reloadSliders("p", 1);
+                });
+            } else {
+                element.val.addClass("px-" + val);
+                element.addClass("px-" + val);
+                reloadSliders("p", 1);
+            }
+        }
+    })
+    $('#py').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Y",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (val == 0) {
+                element.removeClass([...p_val.Axis, ...['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5']]);
+                return;
+            }
+            if (hasClass([...p_val.Axis, ...['pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5', 'pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5', 'py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5']])) {
+                element.removeClass([...p_val.Axis, ...['pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5', 'pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5', 'py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5']]).then(_ => {
+                    element.val.addClass("py-" + val);
+                    element.addClass("py-" + val);
+                    reloadSliders("p", 2);
+                });
+            } else {
+                element.val.addClass("py-" + val);
+                element.addClass("py-" + val);
+                reloadSliders("p", 2);
+            }
+        }
+    })
+    $('#pt').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Top ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...p_val.Particular, ...['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5', 'pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5']])) {
+                element.removeClass([...p_val.Particular, ...['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5', 'pt-0', 'pt-1', 'pt-2', 'pt-3', 'pt-4', 'pt-5']]).then(_ => {
+                    element.val.addClass("pt-" + val);
+                    element.addClass("pt-" + val);
+                    reloadSliders("p", 3);
+                });
+            } else {
+                element.val.addClass("pt-" + val);
+                element.addClass("pt-" + val);
+                reloadSliders("p", 3);
+            }
+        }
+    })
+    $('#pb').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Bottom ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...p_val.Particular, ...['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5', 'pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5']])) {
+                element.removeClass([...p_val.Particular, ...['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5', 'pb-0', 'pb-1', 'pb-2', 'pb-3', 'pb-4', 'pb-5']]).then(_ => {
+                    element.val.addClass("pb-" + val);
+                    element.addClass("pb-" + val);
+                    reloadSliders("p", 4);
+                });
+            } else {
+                element.val.addClass("pb-" + val);
+                element.addClass("pb-" + val);
+                reloadSliders("p", 4);
+            }
+        }
+    })
+    $('#pl').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Left ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...p_val.Particular, ...['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5', 'pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5']])) {
+                element.removeClass([...p_val.Particular, ...['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5', 'pl-0', 'pl-1', 'pl-2', 'pl-3', 'pl-4', 'pl-5']]).then(_ => {
+                    element.val.addClass("pl-" + val);
+                    element.addClass("pl-" + val);
+                    reloadSliders("p", 5);
+                });
+            } else {
+                element.val.addClass("pl-" + val);
+                element.addClass("pl-" + val);
+                reloadSliders("p", 5);
+            }
+        }
+    })
+    $('#pr').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 5,
+        from: isClass(['pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Right ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            if (hasClass([...p_val.Particular, ...['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5', 'pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5']])) {
+                element.removeClass([...p_val.Particular, ...['px-0', 'px-1', 'px-2', 'px-3', 'px-4', 'px-5', 'pr-0', 'pr-1', 'pr-2', 'pr-3', 'pr-4', 'pr-5']]).then(_ => {
+                    element.val.addClass("pr-" + val);
+                    element.addClass("pr-" + val);
+                    reloadSliders("p", 6);
+                });
+            } else {
+                element.val.addClass("pr-" + val);
+                element.addClass("pr-" + val);
+                reloadSliders("p", 6);
+            }
+        }
+    })
+
+    var stLVL = (values) => {
+        for (let i = 0; i < values.length; i++) {
+            if (element.val.hasClass(values[i])) {
+                if (values[i] == "shadow")
+                    return 2;
+                const val = values[i].split("-");
+                let returnVal = 0;
+                val[1] == "none" ? returnVal = 0 :
+                    val[1] == "sm" ? returnVal = 1 :
+                    val[1] == "lg" ? returnVal = 3 :
+                    returnVal = 0;
+                return returnVal;
+            }
+        }
+        return 0;
+    }
+
+    $('#sg').ionRangeSlider({
+        skin: 'square',
+        min: 0,
+        max: 3,
+        from: stLVL(['shadow', 'shadow-sm', 'shadow-lg', 'shadow-none']),
+        type: 'single',
+        step: 1,
+        prettify: false,
+        grid: true,
+        hasGrid: true,
+        prefix: "Level ",
+        onFinish: (data) => {
+            if (element.val === null)
+                return;
+            let val = data.from;
+            val === 1 ? val = "-sm" :
+                val === 2 ? val = "" :
+                val === 3 ? val = "-lg" :
+                val = "-none";
+            if (hasClass(['shadow', 'shadow-sm', 'shadow-lg', 'shadow-none'])) {
+                element.removeClass(['shadow', 'shadow-sm', 'shadow-lg', 'shadow-none']).then(_ => {
+                    element.val.addClass("shadow" + val);
+                    element.addClass("shadow" + val);
+                });
+            } else {
+                element.val.addClass("shadow" + val);
+                element.addClass("shadow" + val);
+            }
+        }
+    })
+</script>

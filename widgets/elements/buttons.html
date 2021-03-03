@@ -1,0 +1,67 @@
+<div id="buttons-add" data-backdrop="false" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<i class="fas fa-times" style="color:#FF3636;"></i>
+				</button>
+                <h4 class="title title-up">Call to action blocks</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-center py-2">
+                    Drag any block into the page. It will become a chield of the element it's being over
+                </h5>
+
+                <div id="buttons-container-add">
+                    <div class="row text-center justify-content-center">
+                        <div class="col-md-2">
+                            <a data-action="add" data-from="buttons" data-id="0" href="https://rosance.com" class="btn btn-block btn-success buttonDraggable">Button</a>
+                            <a data-action="add" data-from="buttons" data-id="5" href="https://rosance.com" class="btn btn-block btn-success buttonDraggable btn-rounded">Button</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a data-action="add" data-from="buttons" data-id="1" href="https://rosance.com" class="btn btn-block btn-warning buttonDraggable">Button</a>
+                            <a data-action="add" data-from="buttons" data-id="6" href="https://rosance.com" class="btn btn-block btn-warning buttonDraggable btn-rounded">Button</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a data-action="add" data-from="buttons" data-id="2" href="https://rosance.com" class="btn btn-block btn-primary buttonDraggable">Button</a>
+                            <a data-action="add" data-from="buttons" data-id="7" href="https://rosance.com" class="btn btn-block btn-primary buttonDraggable btn-rounded">Button</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a data-action="add" data-from="buttons" data-id="3" href="https://rosance.com" class="btn btn-block btn-danger buttonDraggable">Button</a>
+                            <a data-action="add" data-from="buttons" data-id="8" href="https://rosance.com" class="btn btn-block btn-danger buttonDraggable btn-rounded">Button</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a data-action="add" data-from="buttons" data-id="4" href="https://rosance.com" class="btn btn-block btn-info buttonDraggable">Button</a>
+                            <a data-action="add" data-from="buttons" data-id="9" href="https://rosance.com" class="btn btn-block btn-info buttonDraggable btn-rounded">Button</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#buttons-add').modal('show');
+    });
+    $(".section").hover((e) => {
+        $(e.currentTarget).find(".overlay").fadeIn();
+    }, (e) => {
+        $(e.currentTarget).find(".overlay").fadeOut();
+    })
+    $(".buttonDraggable").draggable({
+        helper: 'clone',
+        appendTo: "body",
+        iframeFix: true,
+        iframeScroll: true,
+        start: function(event, ui) {
+            const original = $(event.currentTarget);
+            const clone = $(ui.helper);
+            $("#buttons-add").modal("hide");
+            clone.css({
+                width: original.outerWidth(),
+                height: original.outerHeight(),
+            });
+        }
+    })
+</script>
