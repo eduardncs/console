@@ -1,10 +1,10 @@
-const toast=(t)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"success",title:t})};
-const etoast=(o)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"error",title:o})};
-const wtoast=(t)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"warning",title:t})};
-const itoast=(t)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"info",title:t})};
-const showerror=(r) => Swal.fire({ icon: "error", title: "Oops...", text: r, scrollbarPadding: !1, allowOutsideClick: !1 });
-const showsuccess=(c, s = !0, t) => Swal.fire({ icon: "success", title: "Success! :)", html: c, scrollbarPadding: !1, confirmButtonText: "Great!", allowOutsideClick: !1 }).then(() => { s || (window.location.href = t) });
-const showsuccessprojectselection=o=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:1e3}).fire({icon:"success",title:o}).then(()=>{window.location.href="dashboard/overview"})};
+const toast=async(t)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"success",title:t})};
+const etoast=async(o)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"error",title:o})};
+const wtoast=async(t)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"warning",title:t})};
+const itoast=async(t)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:3e3}).fire({icon:"info",title:t})};
+const showerror=async(r) => Swal.fire({ icon: "error", title: "Oops...", text: r, scrollbarPadding: !1, allowOutsideClick: !1 });
+const showsuccess=async(c, s = !0, t) => Swal.fire({ icon: "success", title: "Success! :)", html: c, scrollbarPadding: !1, confirmButtonText: "Great!", allowOutsideClick: !1 }).then(() => { s || (window.location.href = t) });
+const showsuccessprojectselection=async(o)=>{Swal.mixin({toast:!0,position:"top-end",showConfirmButton:!1,timer:1e3}).fire({icon:"success",title:o}).then(()=>{window.location.href="dashboard/overview"})};
 window.showsuccess =showsuccess;window.showerror = showerror;
 window.toast = toast;window.etoast = etoast;
 window.itoast =itoast;window.wtoast = wtoast;
@@ -47,19 +47,33 @@ const getSubPage = async () =>{
 }
 
 const logout = () =>{
-	return Swal.fire
-	({
-		title: 'Are you sure do you want to logout?',
-		icon: 'question',
-		cancelButtonText: 'No',
-		cancelButtonColor: 'red',
-		showConfirmButton: true,
-		confirmButtonText: 'Yes!',
-		showCancelButton: true
-	}).then((result) => {
-   		if (result.value) 
-     		window.location.href = `registration?action=logout`
-	});
+	askBeforeLogout().then(
+		(result) =>{
+			if(result === true)
+			{
+				window.location.href = "./registration?action=logout";
+			}else{
+				return false;
+			}
+		}
+	)
+}
+const askBeforeLogout = async() =>{
+    try {
+	const response =  await Swal.fire({
+			title: 'Are you sure do you want to logout ?',
+			icon: 'info',
+			cancelButtonText: 'No',
+			cancelButtonColor: 'red',
+			showConfirmButton: true,
+			confirmButtonText: 'Yes!',
+			showCancelButton: true
+		})
+		return !!(response.value && response.value === true);
+	}catch(error){
+		console.log(error);
+		return false;
+	}
 }
 window.logout = logout;
 

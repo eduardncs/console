@@ -9,8 +9,10 @@ namespace Rosance
 	*/
 	require_once("rosance_autoload.php");
 	use Rosance\Callback;
+	use Rosance\Data;
 	class Database
 	{
+		public static $staticServer = "localhost";
 		public $server = "localhost";
 		protected $username = "root";
 		protected $password = "";
@@ -473,8 +475,7 @@ namespace Rosance
 		
 		public function finishRegisterUser($id , $bname)
 		{
-			try
-			{
+			try{
 				if(empty($id) or empty($bname))
 					throw new \Exception("Id or Business name is empty !");
 				
@@ -482,6 +483,16 @@ namespace Rosance
 				$id = mysqli_real_escape_string($connection, $id);
 				$bname = mysqli_real_escape_string($connection, $bname);
 				$globals = $this->GetGlobals();
+
+				//Check if Bname is not allready used
+				$prequery = "SELECT * from users where Business_Name='".$bname."'";
+				$preresult = mysqli_query($connection,$prequery);
+				if($preresult->num_rows > 0)
+				{
+					$this->dbclosemaster($connection);
+					throw new \Exception("Business name allready in use, please choose another one!");
+				}
+
 				$query = "UPDATE users SET Business_Name='".$bname."' WHERE UID='".$id."'";
 				$result = mysqli_query($connection,$query);
 
@@ -511,7 +522,7 @@ namespace Rosance
 					$ncs_user = json_encode($ncs_user);
 					setcookie("NCS_USER", $ncs_user , time() + (86400 * 30), "/");
 
-					return $callback->SendSuccessOnMainPageWithRedirect("Account successfully created, welcome to Rosance","dashboard");
+					return $callback->SendSuccessOnMainPageWithRedirect("Account successfully created, Welcome to Rosance","dashboard");
 				}
 				else {
 					throw new \Exception("Something went wrong,  please try again later !");
@@ -646,6 +657,52 @@ namespace Rosance
 				return true;
 			return false;
 		}
+		/**
+		 * Resend the confirmation email to this email
+		 * @param string $email
+		 */
+		public function ResendConfirmationEmail($email){
+			try{
+				if(empty($email))
+					throw new \Exception("Email cannot be empty!");
+				
+				$connection = $this->dbconnectmaster();
+				$email = mysqli_real_escape_string($connection,$email);
+
+				$query = "SELECT * FROM users WHERE Email='".$email."'";
+				$result = mysqli_query($connection,$query);
+				$this->dbclosemaster($connection);
+
+				if($result->num_rows == 0)
+					throw new \Exception("Email was not found on our database, are you sure you registered first ?");
+				while($row = mysqli_fetch_assoc($users))
+				{
+					$id = $row['UID'];
+					$token = $row['Token'];
+					$activated = $row['Activated'];
+					$fname = $row['FirstName'];
+					$lname = $row['LastName'];
+					if($activated == 1)
+						throw new Exception("Account was activated before!");
+					
+					$this->SendTokenEmail(
+						$email,
+						$fname,
+						$lname,
+						$token,
+						$id
+					);
+					$callback = new Callback();
+					return $callback->SendSuccessMessage("Email confirmation was successfully resent to ".$email);
+				}
+
+			}catch(\Exception $ex)
+			{
+				$callback = new Callback();
+				return $callback->SendErrorToast($ex->getMessage());
+			}
+		}
+
 		/**
 		 * To be continued in further releases !!!
 		 * Send an welcome Email to new users!!!
@@ -836,6 +893,62 @@ namespace Rosance
 				$this->dbclosemaster($connection);
 				$callback = new Callback();
 				return $callback->SendErrorOnMainPage($ex->getMessage());
+			}
+		}
+		/**
+		 * Remove an user and all his data from the server
+		 */
+		public function deleteUser($userID)
+		{
+			try{
+			//First we need to sanitize id
+				if(empty($userID))
+					throw new \Exception("User id came blank!");
+				$connection = $this->dbconnectmaster();
+				$userID = mysqli_real_escape_string($connection, $userID);
+
+				// Fetch all projects this user have
+
+				$query = "SELECT * from projects where Owner='".$userID."'";
+				$result = mysqli_query($connection,$query);
+				if(!$result)
+					throw new \Exception("Something went wrong!");
+				if($result->num_rows > 0)
+				{
+					//User has projects , lets delete em all
+					$data = new Data();
+					$user = $data->GetUser($userID);
+					while($row = mysqli_fetch_assoc($result))
+					{
+						$deletionResult = Data::RemoveProjectsAsync($user, $row['ProjectID'],$connection);
+						if(!$deletionResult)
+							throw new \Exception($deletionResult);
+					}
+				}
+				//Remove also the business name folder inside clients
+
+				if(file_exists("../clients/".$user->Business_Name."/"))
+					rmdir("../clients/".$user->Business_Name."/");
+				
+				//Now delete this user
+				$queryU = "DELETE FROM users WHERE UID='".$userID."'";
+				$resultU = mysqli_query($connection, $queryU);
+				$this->dbclosemaster($connection);
+				if(!$resultU)
+					throw new \Exception("Something went wrong #2!");
+				
+				session_destroy();
+				setcookie("NCS_USER" , '' , time()-3600 , '/' , '' , 0 );
+				unset( $_COOKIE["NCS_USER"] );
+				setcookie("NCS_PROJECT" , '' , time()-3600 , '/' , '' , 0 );
+				unset( $_COOKIE["NCS_PROJECT"] );
+				
+				$callback = new Callback();
+				return $callback->SendSuccessOnMainPageWithRedirect("We are sorry to see you go ... , but your request has been fullfilled!","/registration");
+			
+			}catch(\Exception $ex){
+				$callback = new Callback();
+				return $callback->SendErrorToast($ex->getMessage());
 			}
 		}
 		/**

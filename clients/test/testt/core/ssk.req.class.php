@@ -1,0 +1,1 @@
+<?php class ssk{ protected $ssk = '484470629603f9b9239d3f'; public function GetSSK(){ return $this->ssk; }}  ?>

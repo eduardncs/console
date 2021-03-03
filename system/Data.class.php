@@ -860,6 +860,56 @@ namespace Rosance
 			}
 		}
 
+		public static function RemoveProjectsAsync($user,$projectID,$connection){
+			try{
+				$globals = self::GetGlobals();
+				$user->id = mysqli_real_escape_string($connection, $user->id);
+				$project = mysqli_real_escape_string($connection, $projectID);
+				//Check if user is owner of the project
+				$query0 = "SELECT * FROM projects WHERE Owner='".$user->id."' AND ProjectID='".$project."'";
+				$result = mysqli_query($connection , $query0);
+				$pname = mysqli_fetch_assoc($result);
+				if($result->num_rows > 0)
+				{
+					try
+					{
+						$query1 = "DELETE FROM projects WHERE Owner='".$user->id."' AND ProjectID='".$project."'";
+						$result = mysqli_query($connection, $query1);
+						$dbname = $globals['PREFIX']."_".$project;
+						//for production
+						//USE CPANEL API
+						if($globals['TEST'] == false)
+						{
+							self::removeDb($globals['PREFIX'],$globals['PWD'],$dbname);
+							self::removeUser($globals['PREFIX'],$globals['PWD'],$globals['PREFIX']."_".substr($project,0,7));
+						}else{
+						//for testing
+						//USER MARIADB
+						$query2 = "DROP DATABASE ".$dbname."";
+						$result2 = mysqli_query($connection, $query2);
+						$query3 = "DROP USER ".$globals['PREFIX']."_".substr($project,0,7)."@".Database::$staticServer."";
+						$result3 = mysqli_query($connection, $query3); 
+						}
+						self::recurse_delete("../clients/".$user->Business_Name.'/'.str_replace(' ', '', $pname['Project']));
+						rmdir("../clients/".$user->Business_Name.'/'.str_replace(' ', '', $pname['Project']));
+						return true;
+					}
+					catch(\Exception $ex)
+					{
+						return $ex->getMessage();
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+			catch(\Exception $ex)
+			{
+				return $ex->getMessage();
+			}
+		}
+
 		public function UpdateLegalDocuments(Project $project, User $user, $data)
 		{
 			try{

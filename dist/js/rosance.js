@@ -4,7 +4,6 @@
  * Copyright © 2020
  */
 import * as globals from "./modules/rosance.js";
-import Utils from "./modules/utils.js";
 
 window.toast = globals.toast;
 window.etoast = globals.etoast;

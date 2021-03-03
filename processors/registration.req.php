@@ -49,4 +49,15 @@ if(isset($_POST['old_pass']) && isset($_POST['new_pass1']) && isset($_POST['new_
 	$user = $data->GetUser($_SESSION['loggedIN']);
 	echo $database->resetPassword($user , $_POST['old_pass'],$_POST['new_pass1'], $_POST['new_pass2']);
 }
+if(isset($_POST['action']) && $_POST['action'] === "deleteAccount")
+{
+	$userID = $_SESSION['loggedIN'];
+	$database = new Database();
+	echo $database->deleteUser($userID);
+}
+if(isset($_POST['NCS_ACTION']) && $_POST['NCS_ACTION'] == "RESENDCONFIRMATIONEMAIL")
+{
+	$database = new Database();
+	echo $database->ResendConfirmationEmail($_POST['NCS_EMAIL']);
+}
 ?>

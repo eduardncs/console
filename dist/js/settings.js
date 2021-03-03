@@ -86,7 +86,23 @@ const appendHandlersAccount = () =>{
     $("#removeAccount").on("click",(e)=>{
         preRemoveAccount().then(
             (result) => {
-                console.log(result);
+                if(result === true)
+                {
+                    const values = {"action":"deleteAccount"};
+                    return $.ajax({
+                        url:"processors/registration.req.php",
+                        type:'post',
+                        data:values,
+                        success: (data) =>{
+                            $("#requests").html(data);
+                        },
+                        error: (error)=>{
+                            console.error(error);
+                        }
+                    })
+                }else{
+                    return false;
+                }
             }
         );
     })
@@ -119,21 +135,22 @@ const appendHandlersLegal = () => {
     })
 }
 const preRemoveAccount = async () => {
-    await Swal.fire
-	({
-		title: 'Are you sure do you want to delete your account ?',
-        html: 'All your projects and data will be lost forever',
-		icon: 'warning',
-		cancelButtonText: 'No',
-		cancelButtonColor: 'red',
-		showConfirmButton: true,
-		confirmButtonText: 'Yes!',
-		showCancelButton: true
-	}).then( (result) => {
-        return result;
-    }).catch((error) => {
-        return error;
-    });
+    try {
+    const response =  await Swal.fire({
+            title: 'Are you sure do you want to delete your account ?',
+            html: 'All your projects and data will be lost forever',
+            icon: 'warning',
+            cancelButtonText: 'No',
+            cancelButtonColor: 'red',
+            showConfirmButton: true,
+            confirmButtonText: 'Yes!',
+            showCancelButton: true
+        })
+        return !!(response.value && response.value === true);
+    }catch(error){
+        console.log(error);
+        return false;
+    }
 }
 
 const deleteproject = (projectname) =>{

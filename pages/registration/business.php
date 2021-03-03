@@ -45,7 +45,7 @@
 			</div>
       </form>
 	<h6> 
-		* By finishing registration I hereby declare that I agree to the <a href="https://rosance.com/legal/tos">terms and conditons</a> and I acknowledge that I have read and understood the <a href="https://rosance.com/legal/gdpr">privacy policy</a> of Rosance
+		* By finishing registration I hereby declare that I agree to the <a href="https://rosance.com/tos">terms and conditons</a> and I acknowledge that I have read and understood the <a href="https://rosance.com/gdpr">privacy policy</a> of Rosance
 	</h6>
     </div>
   </div>
@@ -54,6 +54,4 @@
 $("*[data-toggle*=tooltip]").tooltip();
 $("#page-header").html("<h2 style='color:white;'>One more step ,</br> <span class='text-gray' id='welcome_msg'> Please tell us your business name</span></h2>");
 $(function(){var t=$("#welcome_msg"),e=$("#welcome_msg").text().split("");$("#welcome_msg").text(""),$.each(e,function(e,a){var o=$("<span/>").text(a).css({opacity:0});o.appendTo(t),o.delay(70*e),o.animate({opacity:1},1100)})});
-$("#signInWithGoogle").on("click",function(){
-signIn();
-});</script>
+</script>
