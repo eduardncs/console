@@ -252,7 +252,6 @@ namespace Rosance
 		{
 			if(empty($key))
 				return;
-			$callback = new Callback();
 			$rawJSON = $this->getWidgetJSON($user,$project,"menu");
 
 			for ($i=0; $i < count($rawJSON['Menu']); $i++) { 
@@ -275,8 +274,8 @@ namespace Rosance
 			$result = $this->PutWidgetJSON($user, $project , "menu", $finaljson);
 			$result = true;
 			if($result)
-				return $callback->SendSuccessToast("Link removed successfully!");
-			return $callback->SendErrorToast("Something went wrong ...");
+				return ["success" => "Link removed successfully"];
+			return ["error" => "Something went wrong ..."];
 		}
 		/**
 		 * Add a new link into json file
@@ -289,7 +288,6 @@ namespace Rosance
 		{
 			if(empty($key))
 				return;
-			$callback = new Callback();
 			$rawJSON = $this->getWidgetJSON($user, $project , "menu");
 
 			$arrt['Key'] = $key;
@@ -308,8 +306,8 @@ namespace Rosance
 			$rawJSON['Menu'][] = $arrt;
 			$result = $this->PutWidgetJSON($user,$project, "menu", json_encode($rawJSON));
 			if($result)
-				return $callback->SendSuccessToast("Link added!");
-			return $callback->SendErrorToast("Something went wrong ...");
+				return ["success"=>"Success"];
+			return ["error"=>"Something went wrong"];
 		}
 		/**
 		 * Change a menu item chield parent and adjust it's index
@@ -326,7 +324,6 @@ namespace Rosance
 		{
 			if(!isset($who) or !isset($to) or !isset($neighbour) or !isset($inverted) or !isset($isFirst))
 				throw new \Exception("Some fields came out blank , try reloading the page ...");
-			$callback = new Callback();
 			$rawJSON = $this->getWidgetJSON($user, $project , "menu");
 			/**
 			 * Find the element in json
@@ -420,14 +417,13 @@ namespace Rosance
 			}
 			$result = $this->PutWidgetJSON($user,$project, "menu", json_encode(["Menu" => array_values($rawJSON['Menu'])] ));
 			if($result)
-				return $callback->SendSuccessToast("Changes applied!");
+				return ["success"=>"Success"];
 			throw new \Exception("Something went wrong ...");
 
 		} catch(\Exception $ex)
-		{
-			$callback = new Callback();
-			return $callback->SendErrorToast($ex->getMessage());
-		}
+			{
+				return ["error"=>$ex->getMessage()];
+			}
 		}
 		/**
 		 * Change a menu item index
@@ -444,7 +440,6 @@ namespace Rosance
 				if(!isset($who) or !isset($neighbour) or !isset($inverted))
 					throw new \Exception("Some fields came out blank , try reloading the page ...");
 
-				$callback = new Callback();
 				$rawJSON = $this->getWidgetJSON($user, $project , "menu");
 
 				for ($i=0; $i < count($rawJSON['Menu']); $i++) { 
@@ -515,12 +510,11 @@ namespace Rosance
 				}
 				$result = $this->PutWidgetJSON($user,$project, "menu", json_encode(["Menu" => array_values($rawJSON['Menu'])] ));
 				if($result)
-					return $callback->SendSuccessToast("Changes applied!");
+					return ["success"=>"Success"];
 				throw new \Exception("Something went wrong ...");
 
 			}catch(\Exception $ex){
-				$callback = new Callback;
-				return $callback->SendErrorToast($ex->getMessage());
+				return ["error"=>$ex->getMessage()];
 			}
 		}
 		/**

@@ -243,7 +243,11 @@ const restorestyles = _ => {
 const createToolbox = (s, i, parent) => {
     switch (s) {
         case "menu":
-            return toolbox.createToolbox(i, ['Edit menu'], ['parent.openPanel(`' + s + '`,`' + i + '`)'],parent);
+            return toolbox.createToolbox(i, 
+                ['Edit menu'
+            ], [
+                'parent.openPanel(`' + s + '`,`' + i + '`)'
+            ],parent);
         case "footer":
             return toolbox.createToolbox(i, [
                 'Edit footer',

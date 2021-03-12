@@ -1,4 +1,6 @@
 <?php 
+header('Access-Control-Allow-Origin: http://localhost:3000');
+header("Content-type: application/json");
 session_start();
 require_once("../autoload.php");
 use Rosance\Data;
@@ -7,11 +9,22 @@ use Rosance\Project;
 use Rosance\Security;
 use Rosance\Editor;
 
+if(isset($_GET['action']) && $_GET['action'] === "reactGetGlobals"){
+    $data = new Data();
+    $user = $data->GetUser($_GET['data']['UserID']);
+    $project = new Project($_GET['data']['ProjectID']);
+    echo json_encode([
+        "BusinessName" => $user->Business_Name,
+        "ProjectName" => $project->project_name_short
+    ]);
+    return;
+}
+
 $data = new Data();
 $user = $data->GetUser($_SESSION['loggedIN']);
 $project = new Project($_COOKIE['NCS_PROJECT']);
 $editor = new Editor();
-/** 
+/**
  * Quick and simple security script
  * $_POST and $_GET gets filtered
  * and returned an exact copy of the array but sanitized
@@ -64,13 +77,6 @@ if($_POST['action'] === "move")
     $_POST['data']['Inverted'] = filter_var($_POST['data']['Inverted'], FILTER_VALIDATE_BOOLEAN);
     $_POST['data']['isFirst'] = filter_var($_POST['data']['isFirst'], FILTER_VALIDATE_BOOLEAN);
     echo $editor->move($user, $project, $_POST['data']['Key'], $_POST['data']['To'], $_POST['data']['Neighbour'], $_POST['data']['Inverted'],$_POST['data']['isFirst']);
-}
-if($_POST['action'] === "changeIndex")
-{
-    if(!isset($_POST['data']['Key']))
-        return;
-    $_POST['data']['Inverted'] = filter_var($_POST['data']['Inverted'], FILTER_VALIDATE_BOOLEAN);
-    echo $editor->changeIndex($user, $project, $_POST['data']['Key'], $_POST['data']['Neighbour'], $_POST['data']['Inverted']);
 }
 if($_POST['action'] === "editLink")
 {

@@ -1,5 +1,6 @@
 
-<?php  require_once("core/ssk.req.class.php");
+<?php header('Access-Control-Allow-Origin: *'); 
+require_once("core/ssk.req.class.php");
 require_once("core/main.class.php");
 require_once("core/builder.class.php");
 require_once("core/database.class.php");

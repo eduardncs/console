@@ -498,7 +498,7 @@ namespace Rosance
 
 				if($result)
 				{
-					if($globals['TEST'] === false)
+					if($globals['TEST'] == false)
 						$this->createSubdomain($globals['PREFIX'],$globals['PWD'],$bname);
 
 					$this->createFolder($bname,"../");
@@ -675,7 +675,7 @@ namespace Rosance
 
 				if($result->num_rows == 0)
 					throw new \Exception("Email was not found on our database, are you sure you registered first ?");
-				while($row = mysqli_fetch_assoc($users))
+				while($row = mysqli_fetch_assoc($result))
 				{
 					$id = $row['UID'];
 					$token = $row['Token'];
@@ -683,17 +683,20 @@ namespace Rosance
 					$fname = $row['FirstName'];
 					$lname = $row['LastName'];
 					if($activated == 1)
-						throw new Exception("Account was activated before!");
+						throw new \Exception("Account was activated before!");
 					
-					$this->SendTokenEmail(
-						$email,
-						$fname,
-						$lname,
-						$token,
-						$id
-					);
+					$mail = $this->SendTokenEmail(
+							$email,
+							$fname,
+							$lname,
+							$token,
+							$id
+						);
+					if(!$mail)
+						throw new \Exception("Mail could not be send, #Mailserver Error,  please contact rosance support!");
+
 					$callback = new Callback();
-					return $callback->SendSuccessMessage("Email confirmation was successfully resent to ".$email);
+					return $callback->SendSuccessOnMainPage("Email confirmation was successfully resent to ".$email);
 				}
 
 			}catch(\Exception $ex)
@@ -913,10 +916,12 @@ namespace Rosance
 				$result = mysqli_query($connection,$query);
 				if(!$result)
 					throw new \Exception("Something went wrong!");
+
+				$data = new Data();
+
 				if($result->num_rows > 0)
 				{
 					//User has projects , lets delete em all
-					$data = new Data();
 					$user = $data->GetUser($userID);
 					while($row = mysqli_fetch_assoc($result))
 					{
@@ -928,7 +933,7 @@ namespace Rosance
 				//Remove also the business name folder inside clients
 
 				if(file_exists("../clients/".$user->Business_Name."/"))
-					rmdir("../clients/".$user->Business_Name."/");
+					$data->recurse_delete("../clients/".$user->Business_Name."/");
 				
 				//Now delete this user
 				$queryU = "DELETE FROM users WHERE UID='".$userID."'";

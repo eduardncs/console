@@ -16,6 +16,7 @@
         { "Href": "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" },
         { "Href": "js/app.js" },
         { "Href": "js/move-top.js" },
-        { "Href": "js/easing.js" }
+        { "Href": "js/easing.js" },
+		{ "Href": "core/editor.js" }
     ]
 }

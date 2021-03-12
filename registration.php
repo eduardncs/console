@@ -11,7 +11,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'logout' or $_GET['action'] == 
 }
 if(isset($_SESSION['loggedIN']) && (!isset($_GET['action'])))
 {
-    header("Location: dashboard");
+    header("Location: projects");
 }
 require_once("autoload.php");
 use Rosance\Database;

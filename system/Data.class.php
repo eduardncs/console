@@ -278,7 +278,7 @@ namespace Rosance
 		 * @param string $dir
 		 * @return bool
 		 */
-		private function recurse_delete($dir)
+		public function recurse_delete($dir)
 		{
 			if($dir == null)
 				return;
@@ -862,7 +862,7 @@ namespace Rosance
 
 		public static function RemoveProjectsAsync($user,$projectID,$connection){
 			try{
-				$globals = self::GetGlobals();
+				$globals = (new self)->GetGlobals();
 				$user->id = mysqli_real_escape_string($connection, $user->id);
 				$project = mysqli_real_escape_string($connection, $projectID);
 				//Check if user is owner of the project
@@ -880,8 +880,8 @@ namespace Rosance
 						//USE CPANEL API
 						if($globals['TEST'] == false)
 						{
-							self::removeDb($globals['PREFIX'],$globals['PWD'],$dbname);
-							self::removeUser($globals['PREFIX'],$globals['PWD'],$globals['PREFIX']."_".substr($project,0,7));
+							(new self)->removeDb($globals['PREFIX'],$globals['PWD'],$dbname);
+							(new self)->removeUser($globals['PREFIX'],$globals['PWD'],$globals['PREFIX']."_".substr($project,0,7));
 						}else{
 						//for testing
 						//USER MARIADB
@@ -890,7 +890,7 @@ namespace Rosance
 						$query3 = "DROP USER ".$globals['PREFIX']."_".substr($project,0,7)."@".Database::$staticServer."";
 						$result3 = mysqli_query($connection, $query3); 
 						}
-						self::recurse_delete("../clients/".$user->Business_Name.'/'.str_replace(' ', '', $pname['Project']));
+						(new self)->recurse_delete("../clients/".$user->Business_Name.'/'.str_replace(' ', '', $pname['Project']));
 						rmdir("../clients/".$user->Business_Name.'/'.str_replace(' ', '', $pname['Project']));
 						return true;
 					}
