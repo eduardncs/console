@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { NavbarMain } from './Components/Navbar';
 import { Header, About, Skills, Portofolio, GetInTouch, Footer } from './Components/Body';
-import SimpleReactLightbox from 'simple-react-lightbox'
 import './App.css';
 
-export const domain = "http://localhost/";
+export const domain = "https://eduardncs.com/";
 
 const App = () =>{
 
   useEffect(() =>{
-    document.getElementById("preloader").style.display = 'none';
+    setTimeout(() =>{
+      document.getElementById("preloader").style.display = 'none';
+    }, 500)
     window.onscroll = function() {
       (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? document.getElementById("movetop").style.display = "block"
       : document.getElementById("movetop").style.display = "none";
@@ -18,7 +19,7 @@ const App = () =>{
   },[])
   
   return (
-    <SimpleReactLightbox>
+    <>
       <Preloader />
       <NavbarMain/>
       <Header />
@@ -27,7 +28,7 @@ const App = () =>{
       <Portofolio />
       <GetInTouch />
       <Footer />
-    </SimpleReactLightbox>
+    </>
   )
 }
 

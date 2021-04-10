@@ -28,35 +28,37 @@ const Header = () =>{
             <Container className="h-100">
                 <Row className="h-100 d-flex align-items-center">
 				<Col md={8} className="text-header">
-					<h3>Hi , my name is</h3>
-                    <h2>Alexandru-Eduard Neacsu</h2>
-                    <Typing speed={100} loop={true} startDelay={300} >
-                        <h4>Full stack web developer</h4>
-                        <Typing.Reset count={1}/>
-                    </Typing>
-                    <div className="main-social mt-4">
-                        <OverlayTrigger placement="bottom" overlay={
-                            <Tooltip>
-                                Github profile
-                            </Tooltip>
-                        }>
-                        <a href="https://github.com/eduardncs"><FontAwesomeIcon icon={faGithub} /></a>
-                        </OverlayTrigger>
-                        <OverlayTrigger placement="bottom" overlay={
-                            <Tooltip>
-                                Linkedin profile
-                            </Tooltip>
-                        }>
-                        <a href="https://www.linkedin.com/in/eduard-neacsu-7691071b1/" ><FontAwesomeIcon icon={faLinkedin} /></a>
-                        </OverlayTrigger>
-                        <OverlayTrigger placement="bottom" overlay={
-                            <Tooltip>
-                                Download CV
-                            </Tooltip>
-                        }>
-                        <a href="/neacsualexandrueduard.pdf"><FontAwesomeIcon icon={faFileAlt} /></a>
-                        </OverlayTrigger>
-                    </div>
+                    <Container>
+                        <h3>Hi , my name is</h3>
+                        <h2>Alexandru-Eduard Neacsu</h2>
+                        <Typing speed={100} loop={true} startDelay={300} >
+                            <h4>Full stack web developer</h4>
+                            <Typing.Reset count={1}/>
+                        </Typing>
+                        <div className="main-social mt-4">
+                            <OverlayTrigger placement="bottom" overlay={
+                                <Tooltip>
+                                    Github profile
+                                </Tooltip>
+                            }>
+                            <a href="https://github.com/eduardncs"><FontAwesomeIcon icon={faGithub} /></a>
+                            </OverlayTrigger>
+                            <OverlayTrigger placement="bottom" overlay={
+                                <Tooltip>
+                                    Linkedin profile
+                                </Tooltip>
+                            }>
+                            <a href="https://www.linkedin.com/in/eduard-neacsu-7691071b1/" ><FontAwesomeIcon icon={faLinkedin} /></a>
+                            </OverlayTrigger>
+                            <OverlayTrigger placement="bottom" overlay={
+                                <Tooltip>
+                                    Download CV
+                                </Tooltip>
+                            }>
+                            <a href="/neacsualexandrueduard.pdf"><FontAwesomeIcon icon={faFileAlt} /></a>
+                            </OverlayTrigger>
+                        </div>
+                    </Container>
                 </Col>
 			</Row>
             </Container>
@@ -374,7 +376,7 @@ const Portofolio = () => {
                         </Card.Body>
                         <Card.Footer>
                             <Project
-                                title="Coin Angel"
+                                title="My portofolio"
                                 contentHTML={
                                     <Row>
                                         <Col md={6}>
@@ -387,7 +389,7 @@ const Portofolio = () => {
                                 }
                             />
                             <Button href="https://eduardncs.com" variant="outline-light" className="btn-sm mr-3"><FontAwesomeIcon icon={ faGlobe } /></Button>
-                            <Button href="https://github.com" variant="outline-light" className="btn-sm"><FontAwesomeIcon icon={faGithub} /></Button>
+                            <Button href="https://github.com/eduardncs/portofolio" variant="outline-light" className="btn-sm"><FontAwesomeIcon icon={faGithub} /></Button>
                         </Card.Footer>
                     </Card>
                 </Col>
@@ -436,7 +438,6 @@ const GetInTouch = () =>{
 
     return(
         <section id="contact" className="getInTouch py-5">
-            <div id="ajax"></div>
             <Container className="py-3 text-center">
                 <h6 className="title-small">Get in touch</h6>
                 <h3 className="title-big mb-md-5 mb-4">Let's start a project together!</h3>
@@ -502,23 +503,13 @@ const GetInTouch = () =>{
 }
 
 const Footer = () =>{
-    const moveTop = (duration) =>{
+    const moveTop = () =>{
         if(document.scrollingElement.scrollTop === 0) return;
-
-        const totalScrollDistance = document.scrollingElement.scrollTop;
-        let scrollY = totalScrollDistance, oldTimestamp = null;
-
-        const step = (newTimestamp) => {
-            if (oldTimestamp !== null) {
-                // if duration is 0 scrollY will be -Infinity
-                scrollY -= totalScrollDistance * (newTimestamp - oldTimestamp) / duration;
-                if (scrollY <= 0) return document.scrollingElement.scrollTop = 0;
-                document.scrollingElement.scrollTop = scrollY;
-            }
-            oldTimestamp = newTimestamp;
-            window.requestAnimationFrame(step);
-        }
-        window.requestAnimationFrame(step);
+        const scroll = window.scroll;
+        scroll({
+            top: 0,
+            behavior: "smooth"
+          });
     }
 
     return (

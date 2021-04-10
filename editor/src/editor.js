@@ -1,7 +1,7 @@
 import React from 'react';
 import NavbarTop from './components/navbar';
 import Sidebar from './components/sidebar';
-import { Overlay, getGlobals} from './components/globals';
+import { Overlay} from './components/globals';
 import Sandbox from './components/sandbox';
 import { Container } from 'react-bootstrap';
 

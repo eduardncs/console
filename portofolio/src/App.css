@@ -50,17 +50,18 @@ p {
 
 .ncs-navbar {
     background-color: var(--bg-color);
-    padding: 0px;
     transition: all 0.4s ease 0s;
     height: 90px;
+}
+
+.nav-link {
+    color: var(--primary-color) !important;
+    font-size: 1.4em;
 }
 
 @media (max-width: 600px) {
     .ncs-navbar .navbar-brand {
         padding-left: 25px;
-    }
-    .ncs-navbar .navbar-toggler {
-        padding-right: 25px;
     }
     .ncs-navbar {
         background-color: var(--bg-color) !important;
@@ -72,11 +73,10 @@ p {
 }
 
 .overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */
     height: 100%;
     width: 100%;
     position: fixed;
-    z-index: 1024;
+    z-index: 2048;
     left: 0;
     top: 0;
     background-color: white;
@@ -171,6 +171,13 @@ p {
     font-weight: 800;
     letter-spacing: 3px;
     text-shadow: 0 2px 2px rgb(0 0 0 / 20%);
+    word-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+    .text-header h2 {
+        font-size: 40px;
+    }
 }
 
 .main-social a {
@@ -228,10 +235,9 @@ p {
     padding: 40px 30px;
     transition: all 0.5s ease 0s;
     border-radius: var(--border-radius);
-    background-color: var(--bg-light);
+    background: var(--body-color);
     position: relative;
     margin-bottom: 20px;
-    border: 1px solid var(--bg-light);
 }
 
 .skills h4 a {
@@ -255,7 +261,6 @@ p {
 
 .skills .item:hover {
     transition: all 0.8s ease 0s;
-    background: var(--bg-color);
     outline: 1px solid var(--border-color);
 }
 
@@ -268,7 +273,7 @@ p {
 }
 
 .projects .card {
-    background: var(--bg-color);
+    background: var(--body-color);
 }
 
 footer {

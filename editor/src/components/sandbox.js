@@ -1,43 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Iframe from 'react-iframe';
 import $ from 'jquery';
 import tooltip from './tooltip';
 import toolbox from './toolbox';
 import element from './element';
-import Utils from './utils';
-import { postMan, domain } from './backend';
+import { domain, getGlobals } from './backend';
 import { User, Project } from './data';
-
-const getGlobals = async () =>{
-        const user_cookie = JSON.parse(unescape(Utils.getCookie('NCS_USER')));
-        const proj_cookie = Utils.getCookie('NCS_PROJECT');
-        const data = await postMan(
-            "processors/editor.backend.req.php",
-            'get',
-            'reactGetGlobals',
-            {
-                "UserID":user_cookie.UID,
-                "ProjectID":proj_cookie
-            }
-        )
-        User.setUser = data.User;
-        Project.setProject = data.Project;
-        console.log("User and Project is set!");
-    }
 
 const Sandbox = () => {
     const [source, setSource] = useState([]);
-
+    const elements = useRef([]);
     useEffect(() =>{ 
         const fetchData = async() => {
             await getGlobals();
-            console.log("I got here somehow!");
             setSource(domain+"clients/"+User.getUser.Business_Name+"/"+Project.getProject.project_name_short+"/home");
         }
-        console.log("Im calling fetchData");
+        //console.log("Im calling fetchData");
         fetchData();
     }
     , [])
+
+    
     const disableClicks = () =>{
         $("#sandbox").contents().find('a').each(function() {
             $(this).on("click", function(event) {
@@ -189,20 +172,20 @@ const Sandbox = () => {
             const id = that.data("panelid"),
                   data = that.data("panel"),
                   _tooltip = tooltip.createTooltip(that,id,data),
-                  _toolbox = this.createToolbox(that,id,data);
+                  _toolbox = createToolbox(that,id,data);
 
             const $this = {
                 internal: that,
                 tooltip: _tooltip,
                 toolbox: _toolbox
             };
-            this.state.elements.push($this);
+            elements.current = [...elements.current, $this];
             tooltip.adjustTooltipPositionAsync(_tooltip);
             toolbox.adjustToolboxPositionAsync(_toolbox);
 
-            that.on("mouseover", () => this.onMouseOver($this));
-            that.on("mouseout", () => this.onMouseOut($this));
-            that.on("click", () => this.onClick($this));
+            that.on("mouseover", () => onMouseOver($this));
+            that.on("mouseout", () => onMouseOut($this));
+            that.on("click", () => onClick($this));
         })
     }
 
@@ -227,17 +210,15 @@ const Sandbox = () => {
     }
 
     const onClick = ($this) =>{
-        for (let i = 0; i < this.state.elements.length; i++) {
-            const e = this.state.elements[i];
+        for (let i = 0; i < elements.current.length; i++) {
+            const e = elements.current[i];
             if(e.internal === $this.internal)
                 continue;
             e.internal.css({"cursor":"default","outline":"none"})
             e.tooltip.item.hide();
         }
-
         toolbox.show($this.toolbox);
         element.val = $this.internal;
-
         $this.internal.css({
             "cursor":"move",
             "outline":"2px solid blue"

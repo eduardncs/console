@@ -1,8 +1,10 @@
 import $ from 'jquery';
-import { toast, etoast, itoast, wtoast } from "./globals";
+import { toast, etoast, itoast, wtoast } from './globals';
+import Utils from './utils';
+import { User, Project } from './data';
 
 /* The main url of the website*/
-const domain = "http://localhost/";
+export const domain = "http://localhost/";
 /**
  * 
  * @param {string} url Url to the server end point, EX: processors/editor.req.php
@@ -11,7 +13,7 @@ const domain = "http://localhost/";
  * @param {object} dataToSend Object containing get values you need to passs to the backend
  * @returns Object data on success or object Error on error
  */
-const postMan = async(url, method='get', action, dataToSend) =>{
+export const postMan = async(url, method='get', action, dataToSend) =>{
     return await $.ajax({
         url: domain+url,
         method: method,
@@ -28,7 +30,27 @@ const postMan = async(url, method='get', action, dataToSend) =>{
     })
 }
 
-const handleResponse = (response) =>{
+export const getGlobals = async () =>{
+    const user_cookie = JSON.parse(unescape(Utils.getCookie('NCS_USER')));
+    const proj_cookie = Utils.getCookie('NCS_PROJECT');
+
+    console.log(user_cookie);
+    console.log(proj_cookie);
+
+    const data = await postMan(
+        "processors/editor.backend.req.php",
+        'get',
+        'reactGetGlobals',
+        {
+            "UserID":user_cookie.UID,
+            "ProjectID":proj_cookie
+        }
+    )
+    User.setUser = data.User;
+    Project.setProject = data.Project;
+}
+
+export const handleResponse = (response) =>{
     if(typeof response.success !== typeof undefined)
     {
         return toast(response.success);
@@ -42,10 +64,4 @@ const handleResponse = (response) =>{
     {
         return itoast(response.info);
     }
-}
-
-export {
-    domain,
-    postMan,
-    handleResponse
 }

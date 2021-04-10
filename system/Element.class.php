@@ -9,15 +9,18 @@ namespace Rosance
     use Rosance\Callback;
     use Rosance\User;
     use phpQuery;
+	
     require_once("Callback.class.php");
     require_once("phpQuery.php");
+	
     class Element
     {
         const DEFAULT = "this";
         private $document;
         private $path;
         public $element;
-
+		
+		
         /**
          * Create a php DOM document and find a spcified element
          * At the very base of this script stands phpQuery
@@ -26,9 +29,8 @@ namespace Rosance
          * @param Project $project 
          * @param string $id 
          * @param string $page 
-         */
-        function __construct(User $user, Project $project, $id , $page)
-        {
+        */
+        function __construct(User $user, Project $project, $id , $page){
             $this->path = "../clients/".$user->Business_Name."/".$project->project_name_short."/".lcfirst($page).".php";
             $content = file_get_contents($this->path);
             $this->document = phpQuery::newDocumentPHP($content);

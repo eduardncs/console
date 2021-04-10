@@ -12,17 +12,27 @@ $info = $main->getInfo();
 echo $builder->buildHead();
 echo $builder->buildBody();
  ?>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white _6007f7ff9848c py-4 _603f9b9279d77" editable="editable" data-panel="header" data-panelID="_603f9b9279d77">
-            <div class="container">
-                <div class="_6d07f7ff9843c _603f9b9279ec2" editable="editable" data-panel="text" data-panelID="_603f9b9279ec2"><a class="navbar-brand" href="home"><b>Start Bootstrap</b></a></div>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <?php   
-                    echo $builder->buildMenu();
-                     ?>
-                </div>
-            </div>
-        </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-4 _603f9b9279d77" editable="editable" data-panel="header" data-panelID="_603f9b9279d77">
+		<div class="container">
+				<div class="_603f9b9279ec2" editable="editable" data-panel="text" data-panelID="_603f9b9279ec2"><a class="navbar-brand" href="home"><b>Start Bootstrap</b></a></div>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto _R3xd13dsc" editable="editable" data-panel="menu" data-panelid="_R3xd13dsc">
+						<li class="nav-item"><a class="nav-link" href="#" target="_self">Home</a></li>
+						<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Dropdown
+							</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#" target="_self">Dropdown 1</a>
+								<a class="dropdown-item" href="#" target="_self">Dropdown 2</a>
+              </div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#" target="_self">Contact</a></li>
+					</ul>
+				</div>
+		</div>
+</nav>
 
 	<section class="vh-100 _603f9b9279fe2" editable="editable" data-panel="section" style="background-image:url(images/1.jpg); background-size:cover;" data-panelID="_603f9b9279fe2">
 		<div class="container _603f9b927a10c" editable="editable" data-panel="container" data-panelID="_603f9b927a10c">
